@@ -1,0 +1,72 @@
+create table  member
+(
+    id int primary key,
+    name varchar(10),
+    mobileno varchar(15),
+    email varchar(20),
+     gender varchar(10),
+     fathername varchar(100),
+     gymtime varchar(500),
+      age int,
+    TraineeID int,
+    PackageID int,
+   Foreign key TraineeID references Trainee(TID) on 
+    delete set default,
+   Foreign key PackageId references Package(package_id)
+);
+
+
+create table Trainee
+(
+    Tid  int Primary key,
+    Tname varcahr(20),
+    Tmobileno bigint,
+    Temail varchar(50),
+    Tgender varchar(10),
+    Tfathername varchar(50),
+    Tgymtimings varchar(500),
+    Tage int,
+    Tamt int,
+);
+
+create table payment
+(
+     id int primary key;
+     month varchar(50);
+     amt int;
+);
+
+
+create table equipment
+(
+   eq_id varchar(20),
+    Eq_name varchar(100),
+   Price int,
+    No_of_units int ,
+    Description varchar(200)
+);
+
+
+create table package
+(
+    package_id int primary key,
+    package_name varchar(100),
+     amt varchar(50)
+);
+
+
+create table ex_members(id int,name varchar(100),email varchar(25));
+
+DELIMITER $$
+create trigger del_memb After Delete
+on member for each row
+begin
+insert into ex_members(id,name,email) values(old.id,old.name,old.email);
+END ;
+$$
+
+
+
+	
+
+    
